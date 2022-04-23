@@ -36,7 +36,47 @@ namespace ListasDoblementeLigadas
         }
         public void AgregarNodo(string dato)
         {
-
+            nodoActual = nodoActual.nodoSiguiente;
+            while (nodoActual.nodoSiguiente != null)
+            {
+                nodoActual = nodoActual.nodoAnterior;
+            }
+            Nodo nodoNuevo = new Nodo(dato);
+            nodoActual.nodoSiguiente = nodoNuevo;
+        }
+        public Nodo Buscar(string dato)
+        {
+            if (ValidarVacio() == false)
+            {
+                Nodo nodoBusqueda = nodoInicial;
+                while (nodoBusqueda.nodoSiguiente != null)
+                {
+                    nodoBusqueda = nodoBusqueda.nodoSiguiente;
+                    if(nodoBusqueda.Valor == dato)
+                    {
+                        return nodoBusqueda;
+                    }
+                }
+            }
+            return null;
+        }
+        public Nodo BuscarPorIndice(int indice)
+        {
+            int Indice = -1;
+            if (ValidarVacio() == false)
+            {
+                Nodo nodoBusqueda = nodoInicial;
+                while(nodoBusqueda.nodoSiguiente != null)
+                {
+                    nodoBusqueda = nodoBusqueda.nodoSiguiente;
+                    Indice++;
+                        if(Indice == indice)
+                    {
+                        return nodoBusqueda;
+                    }   
+                }
+            }
+            return null;
         }
     }
 }
