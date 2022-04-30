@@ -36,10 +36,10 @@ namespace ListasDoblementeLigadas
         }
         public void AgregarNodo(string dato)
         {
-            nodoActual = nodoActual.nodoSiguiente;
+            nodoActual = nodoInicial;
             while (nodoActual.nodoSiguiente != null)
             {
-                nodoActual = nodoActual.nodoAnterior;
+                nodoActual = nodoActual.nodoSiguiente;
             }
             Nodo nodoNuevo = new Nodo(dato);
             nodoActual.nodoSiguiente = nodoNuevo;
@@ -52,7 +52,7 @@ namespace ListasDoblementeLigadas
                 while (nodoBusqueda.nodoSiguiente != null)
                 {
                     nodoBusqueda = nodoBusqueda.nodoSiguiente;
-                    if(nodoBusqueda.Valor == dato)
+                    if (nodoBusqueda.Valor == dato)
                     {
                         return nodoBusqueda;
                     }
@@ -66,17 +66,30 @@ namespace ListasDoblementeLigadas
             if (ValidarVacio() == false)
             {
                 Nodo nodoBusqueda = nodoInicial;
-                while(nodoBusqueda.nodoSiguiente != null)
+                while (nodoBusqueda.nodoSiguiente != null)
                 {
                     nodoBusqueda = nodoBusqueda.nodoSiguiente;
                     Indice++;
-                        if(Indice == indice)
+                    if (Indice == indice)
                     {
                         return nodoBusqueda;
-                    }   
+                    }
                 }
             }
             return null;
+        }
+        public void BorrarNodo(string dato)
+        {
+            if (ValidarVacio() == false)
+            {
+                nodoActual = Buscar(dato);
+                if (nodoActual != null)
+                {
+                    Nodo nodoAnterior = Buscar(dato);
+                    nodoAnterior.nodoSiguiente = nodoActual.nodoSiguiente;
+                    nodoActual.nodoSiguiente = null;
+                }
+            }
         }
     }
 }
