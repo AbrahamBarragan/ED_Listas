@@ -85,9 +85,9 @@ namespace ListasDoblementeLigadas
                 nodoActual = Buscar(dato);
                 if (nodoActual != null)
                 {
-                    Nodo nodoAnterior = Buscar(dato);
-                    nodoAnterior.nodoSiguiente = nodoActual.nodoSiguiente;
-                    nodoActual.nodoSiguiente = null;
+                    Nodo nodoAntes = Buscar(dato);
+                    nodoAntes.nodoSiguiente = nodoActual.nodoSiguiente;
+                    nodoAntes.Valor = null;
                 }
             }
         }
